@@ -22,10 +22,10 @@ function App() {
         <Route path="/new-quote" exact>
           <NewQuote />
         </Route>
+        <Route path="*">
+          <NotFound />
+        </Route>
       </Switch>
-      <Route path="*">
-        <NotFound />
-      </Route>
     </Layout>
   );
 }
