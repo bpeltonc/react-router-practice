@@ -7,11 +7,6 @@ import useHttp from "../hooks/use-http";
 import { getSingleQuote } from "../lib/api";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
-const DUMMY_QUOTES = [
-  { id: "q1", author: "Max", text: "Learning React is fun!" },
-  { id: "q2", author: "Maximilian", text: "Learning React is great!" },
-];
-
 const QuoteDetail = () => {
   const params = useParams();
   const match = useRouteMatch();
@@ -37,7 +32,7 @@ const QuoteDetail = () => {
     );
   }
 
-  if (status === "error") {
+  if (error) {
     return <p className="centered">{error}</p>;
   }
 
@@ -48,9 +43,9 @@ const QuoteDetail = () => {
   return (
     <Fragment>
       <HighlightedQuote text={loadedQuote.text} author={loadedQuote.author} />
-      <Route path={`${match.path}`} exact>
+      <Route path={match.path} exact>
         <div className="centered">
-          <Link className="btn--flat" to={`${match.path}/comments`}>
+          <Link className="btn--flat" to={`${match.url}/comments`}>
             Load Comments
           </Link>
         </div>
